@@ -1,0 +1,1 @@
+console.log(str4.slice(2))

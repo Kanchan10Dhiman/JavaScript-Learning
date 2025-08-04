@@ -1,0 +1,247 @@
+1.What is the purpose of the constructor() method in a JavaScript class?
+Ans-The constructor() method in JavaScript is a special method of a class that gets automatically called when a new object is created from the class. It is used to initialize object properties and perform any setup required during object creation.
+JavaScript classes can have only one constructor() method. Defining more than one will throw a SyntaxError.
+---------------------------------------------------------------------------------------------------------------------------
+2.In JavaScript, what happens if a subclass defines its own constructor but does not call super() inside it? Explain with an example.
+
+ANS-🔸 Jab tum child class (jaise Admin) me constructor bnaati ho,
+to parent class (jaise User) ka constructor bhi chalana padta hai.
+
+Aur uske liye use hota hai:
+
+✅ super()
+➡️ Ye parent class ka constructor call karta hai.
+
+🧠 Samjho:
+js
+Copy
+Edit
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class Admin extends User {
+  constructor(name) {
+    // yahan super(name) likhna zaroori hai
+    super(name);  // 🟢 parent ka constructor call hua
+    this.role = "admin";
+  }
+}
+❌ Agar super(name) NA likho:
+js
+Copy
+Edit
+class Admin extends User {
+  constructor(name) {
+    this.role = "admin"; // ❌ error yahi pe aayega
+  }
+}
+➡️ Error aayega:
+ReferenceError: Must call super constructor before using 'this'
+
+🔵 Kyu error aata hai?
+Kyuki JavaScript ko pehle parent class ka setup karna hota hai (jaise name set karna),
+uske baad hi child class ka kaam kar sakti hai.
+
+Ek line me:
+Child class ke constructor me super() likhna zaroori hai agar parent me bhi constructor bana ho.
+--------------------------------------------------------------------------------------------------------------------------
+3. Can a child class access methods from the parent class without using super()?
+ANS-Yes — but only if the child class does not have its own constructor.
+Yes — but only if the child class does not have its own constructor.
+
+When you do not create a constructor in the child class, JavaScript automatically handles the super() call behind the scenes. So, you can use the parent class methods normally.
+
+But if you define a constructor in the child class, then you must write super() yourself to call the parent’s constructor and initialize it.
+
+🔍 Example:
+javascript
+Copy
+Edit
+class User {
+    viewData() {
+        console.log("Viewing data");
+    }
+}
+
+class Admin extends User {
+    // no constructor defined here, so super() not needed manually
+}
+
+let admin1 = new Admin();
+admin1.viewData(); // ✅ works fine
+But now:
+
+javascript
+Copy
+Edit
+class Admin extends User {
+    constructor() {
+        console.log("Admin constructor");
+    }
+}
+
+let admin1 = new Admin(); // ❌ Error: Must call super constructor
+Fix:
+
+javascript
+Copy
+Edit
+class Admin extends User {
+    constructor() {
+        super(); // ✅ super() needed if constructor is present
+        console.log("Admin constructor");
+    }
+}
+-----------------------------------------------------------------------------------------------------------------
+4.Why is calling super() before this necessary?
+
+ANS-
+
+Yes — but only if the child class does not have its own constructor.
+
+When you do not create a constructor in the child class, JavaScript automatically handles the super() call behind the scenes
+
+->Why is calling super() before this necessary?
+When you create an object of a child class, JavaScript:
+
+Allocates memory for the object.
+
+Needs to run the parent class constructor to properly set up the object’s base features (inherited ones).
+
+Then it lets the child class constructor run and add its own properties.
+
+🚫 If you use this before super():
+JavaScript doesn’t yet know how to initialize the parent part of the object.
+
+So the object is not in a valid state.
+
+That’s why it throws a ReferenceError saying:
+
+“Must call super() constructor before accessing this in a derived class constructor.”
+
+✅ In simple terms:
+super() must be called first so that the object is properly built from the top (parent class) down (child class), before you start using this.
+---------------------------------------------------------------------------------------------------------------------------------
+5.What is the role of the super() keyword in JavaScript, and how is it different from super.methodName()?
+ANS--super() is used inside the constructor of a child class to call the constructor of the parent class. It allows the child to inherit and initialize the properties defined in the parent.
+
+super.methodName() is used inside any method (not just the constructor) of the child class to call a specific method from the parent class.
+-----------------------------------------------------------------------------------------------------------------------------------
+6.Can we override a method from the parent class in the child class?
+If yes, how?
+ANS-Yes, we can override a method from the parent class in the child class.
+
+💡 How?
+In JavaScript, when a child class defines a method with the same name as a method in the parent class, it overrides the parent’s method.
+
+The Child class overrides the show() method of the Parent class.
+
+So, Child’s version runs.
+
+-->Yes, in JavaScript, we can override a parent class method in the child class by defining a method with the same name. We can also use super.methodName() to call the parent’s version.
+-------------------------------------------------------------------------------------------------------------------------
+7.What will be the output of the following code?
+class A {
+  constructor() {
+    console.log("Constructor A");
+  }
+}
+
+class B extends A {
+  constructor() {
+    console.log("Constructor B");
+    super();
+  }
+}
+
+new B();
+And what if we move super() above console.log("Constructor B")?
+
+ANS->In JavaScript, when a child class uses a constructor, super() must be called before anything else. If we put console.log() before super(), it throws a ReferenceError.
+
+-->In JavaScript, when you extend a class, the child class must call super() before using this or writing any code in the constructor.
+
+In the above code, console.log("Constructor B") is called before super(), which is not allowed in derived classes.
+
+✅ Rule:
+In a class that uses extends, the super() call must be the first line in the constructor.
+------------------------------------------------------------------------------------------------------------------------
+8.What is the role of try-catch block in JavaScript?
+
+ANS->The try-catch block is used for error handling in JavaScript.
+-------------------------------------------------------------------------------------------------------------------------------
+9.Will the code inside catch run if there is no error inside try?
+
+ANS->
+No, the catch block only runs if there is an error inside the try block. If no error occurs, catch is skipped completely.
+-----------------------------------------------------------------------------------------------------------------------------------
+10.try {
+  console.log("Start");
+  throw new Error("Something went wrong");
+  console.log("End");
+} catch (err) {
+  console.log("Caught:", err.message);
+}
+ANS-> No, it does not crash or throw any uncaught error.
+It works perfectly fine and produces this output:
+
+makefile
+Copy
+Edit
+Start
+Caught: Something went wrong
+❓ Why is that?
+console.log("Start") runs normally.
+
+throw new Error("Something went wrong") creates and throws an error.
+
+As soon as the error is thrown, the rest of the try block (console.log("End")) is skipped.
+
+Control jumps to the catch block.
+
+The catch block catches the error and prints:
+
+makefile
+Copy
+Edit
+Caught: Something went wrong
+✅ No Error Happens Because:
+The error is thrown intentionally using throw new Error(...).
+
+It is also caught properly using the catch block.
+
+So, JavaScript does not crash or show a red error in the console.
+-----------------------------------------------------------------------------
+11.Is it possible to inherit a class without using constructor() in the child class?
+If yes, what happens internally?
+ANS-Yes, we can inherit a class without defining a constructor in the child class. JavaScript automatically adds a constructor that calls super() to ensure the parent’s constructor runs properly.
+
+------------------------------------------------------------------------------------------------------------------
+12.Yes, we can use super.eat() in the child class to call the parent’s eat() method. Internally, it looks up the method in the parent’s prototype and runs it with the child’s this context
+------------------------------------------------------------------------------------------------------------------
+13.class Parent {
+  show() {
+    console.log("Parent show");
+  }
+}
+
+class Child extends Parent {
+  show() {
+    super.show();
+    console.log("Child show");
+  }
+}
+
+const obj = new Child();
+obj.show();
+
+ANS-ouput
+Parent show
+Child show
+
+✨ Interview Tip (One-liner):
+The child class overrides the show() method, but still calls the parent’s version using super.show(). So both parent and child outputs are shown.
+------------------------------------------------------------------------------------------------------------------------------

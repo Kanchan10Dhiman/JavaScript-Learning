@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="events.css">
+    <style>
+        body{
+            background-color:darkcyan;
+        }
+
+        .div1{
+            background-color: pink;
+            width:80px;
+            height:80px;
+            margin:30px;
+        }
+        .div2{
+            background-color:yellow;
+            width:80px;
+            height:80px;
+            margin:30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <button onclick="console.log('button is clicked'); alert('clicked')">click me!</button>event handling -->
+     <button class="btn1">hellooo</button>
+
+    <button ondblclick="alert('double clicked')">click here</button>
+
+    <div class="div1" onmouseover="alert('i am div'); console.log('div hovered')"> this is box </div>
+
+    <div class="div2">hi box</div>
+
+    <button class="btn2">hiii </button>
+
+    <button class="btn3">button3</button>
+
+    <button class="toggle">Toggle button</button>
+    <!-- Toggle means switching between two states — like ON/OFF, SHOW/HIDE, TRUE/FALSE, etc. -->
+
+<!--the upper js we write isnide html code is known as --inline event handling-->
+
+    <script src="events.js">
+    </script>
+</body>
+</html>
