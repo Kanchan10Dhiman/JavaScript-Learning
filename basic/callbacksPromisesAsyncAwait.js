@@ -15,3 +15,5 @@ setTimeout(()=>{
   console.log("hello two")
 },6000);
 
+//CALLBACKS=>A callback is a function passed as an arguement to another function.
+
