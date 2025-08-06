@@ -29,7 +29,8 @@ function getdata1(dataId,getnextdata){
     },2000)
 }
 
-//Nested callbacks (callbacks chain)
+//Nested callbacks (callbacks chain) ..This is callback hell..so messy ,hard to undersatnd..(Pyramid of Doom)
+//..CALLBACK HELL IS PROBLEM IN JAVASCRIPT..TO SOLVE THIS PROBLEM WE HAVE PROMISES
 getdata1(1,()=>{
     console.log("getting data 2");
     getdata1(2,()=>{
@@ -40,5 +41,5 @@ getdata1(1,()=>{
         });
     });
 });
-//Ab jaise isne data pass nahi kiya 3 ke baad... to error aa jata... us error ko avoid karne ke liye humne if lagaya
+//Ab jaise isne data pass nahi kiya 3 ke baad... to error aa jata... us error ko avoid karne ke liye humne if lagaya.
 
