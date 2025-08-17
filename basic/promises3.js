@@ -1,4 +1,4 @@
-//PROMISE CHAINI
+//PROMISE CHAINIG
 /*
 Promise chaining is the process of executing multiple asynchronous operations in sequence, where the output of one .then() becomes the input for the next.
 It helps avoid callback hell by writing cleaner, more readable code, and each .then() returns a new promise, allowing us to keep chaining further steps.
