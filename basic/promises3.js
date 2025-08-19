@@ -13,11 +13,6 @@ function asyncfunc1(){
         },4000);
     });
 }
-console.log("fetch data1");
-let p1=asyncfunc1();
-p1.then((res)=>{
-    console.log(res);
-});
 
 function asyncfunc2(){
     return new Promise((resolve, reject)=>{
@@ -27,6 +22,14 @@ function asyncfunc2(){
         },4000);
     });
 }
+
+console.log("fetch data1");
+let p1=asyncfunc1();
+p1.then((res)=>{
+    console.log(res);
+});
+
+
 console.log("fetch data2");
 let p2=asyncfunc2();
 p1.then((res)=>{
