@@ -16,7 +16,7 @@ function getdata1(dataId,getnextdata){
             getnextdata();
         }
         
-     },3000)
+     },6000)
     });
 }
 let promise= getdata1(123);
