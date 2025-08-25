@@ -40,15 +40,40 @@ function api(){
         setTimeout(()=>{
         console.log("data show");
         resolve(200);
-        },2000);
+        },3000);
     });
 }
 
 async function getdata(){
-    await(api);// 1st call
-    await(api);
-    
+    await api();// 1st call
+    await api();
+
 }
+function getdata1(dataId){
+    return new Promise((resolve,reject)=>{
+     setTimeout(()=>{
+        console.log("data",dataId);
+        resolve("200");
+        
+     },5000)
+    });
+}
+async function getalldata(){ //code easy  ye pomises or callbacsk se
+  await getdata1(1);
+  console.log("got data1");
+  await getdata1(2);
+  console.log("got data2");
+  await getdata1(3);
+  console.log("got data3");
+
+}
+// getdata1(1).then(res => console.log("Promise fulfilled with:", res));    just to see ki promise fulfil hogya kya vo b apni ankho se dekhne k liy
+
+//so we can use both async-await or .then() and catch()...but jha async -await use hora vha .then and .catch use nhi krenge and vice  versa
+//jo async-await hote h usko function me dalna pdta h fr use call krte h ..
+
+//Agar async function banaya hai to usko call (getData()) manually likhne ki jrurt na pade — vo apne aap hi execute ho jaye.---yha manually call krne ko unnecessary call krna kehre h---to iske liy jo solution vo h ..Immediately Invoked Function Expression
+
 
 
 
