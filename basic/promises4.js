@@ -33,5 +33,23 @@ async function hello(){
     console.log("hello");
 }
 
+//await us pure async function ko rok deta hai usi line par jaha await aaya hai, jab tak us promise ka result nahi milta.
+
+function api(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        console.log("data show");
+        resolve(200);
+        },2000);
+    });
+}
+
+async function getdata(){
+    await(api);// 1st call
+    await(api);
+    
+}
+
+
 
 
