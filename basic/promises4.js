@@ -72,8 +72,20 @@ async function getalldata(){ //code easy  ye pomises or callbacsk se
 //so we can use both async-await or .then() and catch()...but jha async -await use hora vha .then and .catch use nhi krenge and vice  versa
 //jo async-await hote h usko function me dalna pdta h fr use call krte h ..
 
-//Agar async function banaya hai to usko call (getData()) manually likhne ki jrurt na pade — vo apne aap hi execute ho jaye.---yha manually call krne ko unnecessary call krna kehre h---to iske liy jo solution vo h ..Immediately Invoked Function Expression
+//Agar async function banaya hai to usko call (getData()) manually likhne ki jrurt na pade — vo apne aap hi execute ho jaye.---yha manually call krne ko unnecessary call krna kehre h---to iske liy jo solution vo h ..
+//Immediately Invoked Function Expression--IIFE me function ko define karte hi turant call kar dete hain.
+//IIFE = function ko define karo + turant execute karo.
+//Async IIFE = async function + auto execution → bina “unnecessary call”.--jada use ni krte IIFS ye advance js ka part h--ek hi bar use kr skte h dobara use krne k liy frse likhana pdega..bs yeh ki bian call kiye execute ho jata h bs 
 
+(async function(){ //code easy  ye pomises or callbacsk se
+  await getdata1(1);
+  console.log("got data1");
+  await getdata1(2);
+  console.log("got data2");
+  await getdata1(3);
+  console.log("got data3");
+
+})();
 
 
 
