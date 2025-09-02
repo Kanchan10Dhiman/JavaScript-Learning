@@ -1,4 +1,4 @@
-//Inheritance
+//Inheritance 
 class parent{
     hello(){
         console.log("hello");
